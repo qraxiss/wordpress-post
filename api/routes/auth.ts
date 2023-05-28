@@ -5,7 +5,7 @@ import { allowCredentials } from '../middlewares/allowCredentials'
 //Require controllers
 import {Auth} from '../controllers/auth'
 //Initilaziation
-export const router = Router()
+const router = Router()
 
 //Routes
 router.get('/check', allowCredentials, Auth.check)
@@ -14,3 +14,6 @@ router.options('/login', allowCredentials, (req: any, res: any) => {
   res.end()
 })
 router.get('/logout', allowCredentials, requireAuth, Auth.logout)
+
+
+export { router }

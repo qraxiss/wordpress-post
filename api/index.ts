@@ -44,6 +44,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// routes
+import {router as authRouter} from './routes/auth'
+app.use('/auth', authRouter)
+
 // Error Handling
 app.use(status500);
 

@@ -14,10 +14,14 @@
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
-    "node-fetch": "^3.3.1",
     "ts-joi-objectid": "^1.0.2"
   },
   "devDependencies": {
-    "@types/express-session": "^1.17.7"
+    "@types/express-session": "^1.17.7",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "start": "nodemon"
   }
 }

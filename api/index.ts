@@ -23,13 +23,7 @@ app.use(
 app.use(Morgan('dev'));
 app.use(Express.json({ limit: '10mb' }));
 
-let ALLOWED_ORIGINS = [
-  'https://kale.kapsulteknoloji.org',
-  'https://kapsulteknoloji.org',
-  'http://localhost:8000',
-  'http://localhost:3000',
-  'http://localhost:4000',
-];
+let ALLOWED_ORIGINS :string[] = ["*"];
 
 app.use((req, res, next) => {
   let origin = req.headers.origin;

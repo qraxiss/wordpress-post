@@ -23,17 +23,14 @@ app.use(
 app.use(Morgan('dev'));
 app.use(Express.json({ limit: '10mb' }));
 
-let ALLOWED_ORIGINS :string[] = ["*"];
 
 app.use((req, res, next) => {
-  let origin = req.headers.origin;
-  
-  if (origin){
-    let theOrigin = ALLOWED_ORIGINS.indexOf(origin) >= 0 ? origin : ALLOWED_ORIGINS[0];
-    res.header('Access-Control-Allow-Origin', theOrigin);
+  if (req.headers.origin){
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
   }
 
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PATCH')
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });

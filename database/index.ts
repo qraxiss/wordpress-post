@@ -14,3 +14,6 @@ try {
 
 export {connection}
 
+// export models
+import { category } from './models'
+export { category }

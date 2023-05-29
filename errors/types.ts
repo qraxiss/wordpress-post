@@ -1,10 +1,8 @@
 type error = {
-    name: string,
-    message: string,
-    detail?: string,
+    name: string
+    message: string
+    detail?: string
     status?: number
 }
 
-export type {
-    error
-}
+export type { error }

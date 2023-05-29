@@ -14,24 +14,21 @@ export class Auth {
         req.session.user = user
 
         return res.json({ result: true })
-
     }
 
     @ahandler
     static async logout(req: any, res: any, next: any) {
-        if (!req?.session?.user) return next(new error.SessionError(""))
+        if (!req?.session?.user) return next(new error.SessionError(''))
 
         req.session.user = undefined
         req.session.destroy()
 
         return res.json({ result: true })
-
     }
 
     @ahandler
     static async check(req: any, res: any) {
         if (!req?.session?.user) return res.json({ result: false })
         return res.json({ result: true })
-
     }
 }

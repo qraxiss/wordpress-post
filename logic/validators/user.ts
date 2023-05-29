@@ -1,7 +1,7 @@
-import * as Joi from 'joi';
-import { joiObjectId } from 'ts-joi-objectid';
+import * as Joi from 'joi'
+import { joiObjectId } from 'ts-joi-objectid'
 
-const objectId = joiObjectId(Joi);
+const objectId = joiObjectId(Joi)
 
 export const user = Joi.object({
     id: objectId().required(),
@@ -10,4 +10,3 @@ export const user = Joi.object({
     email: Joi.string().required(),
     accesses: Joi.array().items(Joi.string()).required()
 })
-

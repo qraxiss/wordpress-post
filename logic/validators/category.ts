@@ -1,8 +1,7 @@
-import * as Joi from 'joi';
-import { joiObjectId } from 'ts-joi-objectid';
+import * as Joi from 'joi'
+import { joiObjectId } from 'ts-joi-objectid'
 
-const objectId = joiObjectId(Joi);
-
+const objectId = joiObjectId(Joi)
 
 export const create = Joi.object({
     tags: Joi.array().items(Joi.string()),
@@ -24,5 +23,5 @@ export const remove = Joi.object({
 
 export const get = Joi.object({
     category_id: objectId(),
-    category: Joi.string(),
+    category: Joi.string()
 }).nand('category_id', 'category')

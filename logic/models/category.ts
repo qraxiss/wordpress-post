@@ -1,4 +1,4 @@
-import { category as categoryModel } from '../../database/models'
+import { category, category as categoryModel } from '../../database/models'
 import { category as categoryType } from '../types/category'
 import * as validators from '../validators/category'
 import { validate } from '../helpers/validator'
@@ -6,6 +6,18 @@ import { validate } from '../helpers/validator'
 import { filter, rename } from '../helpers/filter'
 
 import { ItemExitsError, NotFoundError } from '../../errors/errors'
+
+function formatObject(item: any, reverse: boolean = false): categoryType {
+    item = filter(item, ['__v'])
+
+    if (!reverse) {
+        item = rename(item, '_id', 'category_id') as categoryType
+    } else {
+        item = rename(item, 'category_id', '_id') as categoryType
+    }
+
+    return item
+}
 
 export async function create(params: any): Promise<categoryType> {
     validate(params, validators.create)
@@ -16,23 +28,23 @@ export async function create(params: any): Promise<categoryType> {
     }
 
     const result = await categoryModel.create(params)
-    const category = rename(filter(result.toObject(), ['__v']), '_id', 'category_id') as categoryType
+    const category = formatObject(result.toObject())
 
-    return category as categoryType
+    return category
 }
 
 export async function get(params: any): Promise<categoryType | categoryType[]> {
     validate(params, validators.get)
 
     if (params.category_id) {
-        var params = rename(params, 'category_id', '_id')
+        params = formatObject(params, true)
         let result = await categoryModel.findOne(params, { __v: 0 })
 
         if (!result) {
             throw new NotFoundError('Category not found')
         }
 
-        return rename(result.toObject(), '_id', 'category_id') as categoryType
+        return formatObject(result.toObject())
     }
 
     var result = await categoryModel.find(params, { __v: 0 })
@@ -41,8 +53,8 @@ export async function get(params: any): Promise<categoryType | categoryType[]> {
     }
 
     var categories = result.map((item) => {
-        return rename(item.toObject(), '_id', 'category_id') as categoryType
-    }) as categoryType[]
+        return formatObject(item.toObject())
+    })
 
     return categories
 }
@@ -62,17 +74,17 @@ export async function update(params: any) {
         throw new NotFoundError('Category not found')
     }
 
-    return result
+    return formatObject(result.toObject())
 }
 
 export async function remove(params: any) {
     validate(params, validators.remove)
 
-    const result = await categoryModel.findOneAndDelete(rename(params, 'category_id', '_id'))
+    const result = await categoryModel.findOneAndDelete(formatObject(params, true))
 
     if (!result) {
         throw new NotFoundError('Category not found')
     }
 
-    return filter(result.toObject(), ['__v'])
+    return formatObject(result.toObject())
 }

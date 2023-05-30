@@ -7,11 +7,10 @@ export function status500(err: BaseError | Error, req: any, res: any, next: any)
     if (err instanceof BaseError) {
         res.status(json.status)
         delete json.status
+        res.json(json)
+        return next()
     }
 
-    if (err instanceof Error) {
-        res.status(500)
-    }
-
+    res.status(500)
     res.json(json)
 }

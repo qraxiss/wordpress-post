@@ -130,3 +130,13 @@ export class DatabaseError extends BaseError {
         return [{ status: this.status, detail: this.detail, message: this.message }]
     }
 }
+
+export class ItemExitsError extends BaseError {
+    constructor(message: string = '') {
+        super(message, 400, 'Item already exists, please try again with something else.')
+    }
+
+    serializeErrors() {
+        return [{ status: this.status, detail: this.detail, message: this.message }]
+    }
+}

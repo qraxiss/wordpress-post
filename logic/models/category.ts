@@ -59,7 +59,7 @@ export async function get(params: any): Promise<categoryType | categoryType[]> {
     return categories
 }
 
-export async function update(params: any) {
+export async function update(params: any): Promise<categoryType> {
     validate(params, validators.update)
 
     const result = await categoryModel.findOneAndUpdate(
@@ -77,7 +77,7 @@ export async function update(params: any) {
     return formatObject(result.toObject())
 }
 
-export async function remove(params: any) {
+export async function remove(params: any): Promise<categoryType> {
     validate(params, validators.remove)
 
     const result = await categoryModel.findOneAndDelete(formatObject(params, true))

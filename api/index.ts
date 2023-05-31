@@ -37,9 +37,11 @@ app.use((req, res, next) => {
 // routes
 import { router as authRouter } from './routes/auth'
 import { router as categoryRouter } from './routes/category'
+import { router as postRouter } from './routes/post'
 
 app.use('/auth', authRouter)
 app.use('/category', categoryRouter)
+app.use('/post', postRouter)
 
 // Error Handling
 app.use(status500)

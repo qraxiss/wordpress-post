@@ -1,4 +1,4 @@
-import { category, category as categoryModel } from '../../database/models'
+import { category as categoryModel } from '../../database/models'
 import { category as categoryType } from '../types/category'
 import * as validators from '../validators/category'
 import { validate } from '../helpers/validator'

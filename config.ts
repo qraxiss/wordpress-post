@@ -15,6 +15,9 @@ type config = {
 
     // https://github.com/stocksensai/ai-analysis
     AI_ANALYSIS_API: string
+
+    // https://github.com/stocksensai/telegram-message
+    TELEGRAM_API: string
 }
 
 const env = process.env as any
@@ -29,7 +32,10 @@ const variables: config = {
     PASSWORD: env.PASSWORD,
     API_GATE: env.API_GATE,
 
-    AI_ANALYSIS_API: env.AI_ANALYSIS_API
+    AI_ANALYSIS_API: env.AI_ANALYSIS_API,
+    TELEGRAM_API: env.TELEGRAM_API
 }
+
+console.log(variables)
 
 export default variables

@@ -5,7 +5,7 @@ import { validate } from '../helpers/validator'
 
 import { filter, rename } from '../helpers/filter'
 
-import { ItemExitsError, NotFoundError } from '../../errors/errors'
+import { ItemExistsError, NotFoundError } from '../../errors/errors'
 
 function formatObject(item: any, reverse: boolean = false): categoryType {
     item = filter(item, ['__v'])
@@ -24,7 +24,7 @@ export async function create(params: any): Promise<categoryType> {
 
     const categories = await categoryModel.find({ category: params.category })
     if (categories.length > 0) {
-        throw new ItemExitsError('Category already exists')
+        throw new ItemExistsError('Category already exists')
     }
 
     const result = await categoryModel.create(params)

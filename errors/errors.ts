@@ -83,7 +83,7 @@ export class NotFoundError extends BaseError {
 
 export class TokenInvalidError extends BaseError {
     constructor(message: string = '') {
-        super(message, 404, "We can't decode your token, are you trying to hack us? Don't push it so much.")
+        super(message, 401, "We can't decode your token, are you trying to hack us? Don't push it so much.")
     }
 
     serializeErrors() {
@@ -93,7 +93,7 @@ export class TokenInvalidError extends BaseError {
 
 export class TokenExpiredError extends BaseError {
     constructor(message: string = '') {
-        super(message, 404, 'Your token is expired, please login again.')
+        super(message, 401, 'Your token is expired, please login again.')
     }
 
     serializeErrors() {
@@ -131,7 +131,7 @@ export class DatabaseError extends BaseError {
     }
 }
 
-export class ItemExitsError extends BaseError {
+export class ItemExistsError extends BaseError {
     constructor(message: string = '') {
         super(message, 400, 'Item already exists, please try again with something else.')
     }

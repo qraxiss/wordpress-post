@@ -1,8 +1,8 @@
 type post = {
-    title: string
+    title?: string
     content: string
     img?: string
-    category: string
+    category?: string
     tags?: string[]
 }
 

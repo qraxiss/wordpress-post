@@ -37,16 +37,16 @@ app.use((req, res, next) => {
 // routes
 import { router as authRouter } from './routes/auth'
 import { router as categoryRouter } from './routes/category'
-import { router as postRouter } from './routes/post'
+import { router as postRouter } from './routes/createAiPost'
 
 app.use('/auth', authRouter)
 app.use('/category', categoryRouter)
-app.use('/post', postRouter)
+app.use('/createAiPost', postRouter)
 
 // Error Handling
 app.use(status500)
 
 // Listen for requests
-app.listen(config.PORT, () => console.log(`API => Listening on port ${config.PORT}`))
+app.listen(config.PORT, () => console.log)
 
 export { app }

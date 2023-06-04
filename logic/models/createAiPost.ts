@@ -14,37 +14,19 @@ export async function create(params: any) {
     const value = validate(params, validators.create) as postType
 
     // Have the artificial intelligence print the same news with different words again.
-    // const aiRegeneratedContent = (
-    //     await getAiResponse({
-    //         report: value.content,
-    //         key: 'regenerate',
-    //         tempature: 1
-    //     })
-    // ).content as string
-
-    // const categories = (await categoryModel.get({})) as categoryType[]
-
-    // const category_names = categories.map((item) => {
-    //     return item.category
-    // })
-
-    // // Identify categories & get hastags
-    // const information = (
-    //     await getAiResponse({
-    //         report: value.content,
-    //         key: 'identify',
-    //         tempature: 1,
-    //         json_parse: true
-    //     })
-    // ).content as identifyType
+    const aiRegeneratedContent = (
+        await getAiResponse({
+            report: value.content,
+            key: 'regenerate',
+            tempature: 1
+        })
+    ).content as string
 
     return (
         await wordpressApi.post('/posts', {
             title: value.title,
-            content: value.content,
-            status: 'publish',
-            categories: ['a'],
-            tags: ['a']
+            content: aiRegeneratedContent,
+            status: 'publish'
         })
     ).data
 }

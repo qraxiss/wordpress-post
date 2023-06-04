@@ -38,10 +38,12 @@ app.use((req, res, next) => {
 import { router as authRouter } from './routes/auth'
 import { router as categoryRouter } from './routes/category'
 import { router as postRouter } from './routes/createAiPost'
+import { router as wordpressRouter } from './routes/wordpressMiddleware'
 
 app.use('/auth', authRouter)
 app.use('/category', categoryRouter)
 app.use('/createAiPost', postRouter)
+app.use('/wordpress', wordpressRouter)
 
 // Error Handling
 app.use(status500)

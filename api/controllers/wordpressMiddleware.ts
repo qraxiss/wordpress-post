@@ -1,11 +1,11 @@
 import { ahandler } from '../../errors/handle'
 import { api as wordpressApi } from '../../logic/helpers/wordpressApi'
 
-import { Request } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
 export class Wordpress {
     @ahandler
-    static async all(req: Request, res: any, next: any) {
+    static async all(req: Request, res: Response, next: NextFunction) {
         res.json(
             (
                 await wordpressApi({

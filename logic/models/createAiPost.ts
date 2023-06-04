@@ -30,7 +30,3 @@ export async function create(params: any) {
         })
     ).data
 }
-
-export async function get(params: any) {
-    return (await wordpressApi.get('/tags')).data
-}
